@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ github.token }}
+      
       - name: Get release
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -30,7 +33,7 @@ jobs:
         if: env.NEW == 'true'
         with:
           name: repo.json
-          json: '{"META": {"repoName": "uYouPlus-Extra Repo","repoIcon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png"},"Tweaked": [{"name": "uYou+-Extra","icon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png","version": env.VERSION,"down": env.ASSET_URL,"category": "Tweaked Apps","description": "uYou+-Extra is a modified version of uYou (made by @MiRO92) with additional features and mainly made for non jailbroken users!","bundleID": "com.google.ios.youtube","appstore": "com.google.ios.youtube","screenshots": ["https://user-images.githubusercontent.com/52943116/189822859-8a0952db-9264-4b5b-9cbe-d0a87b2db5a0.PNG"],"contact": "https://github.com/arichorn/uYouPlusExtra"}]}'
+          json: '{"META": {"repoName": "uYouPlus-Extra Repo","repoIcon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png"},"Tweaked": [{"name": "uYou+-Extra","icon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png","version": ${{ env.VERSION }},"down": ${{ env.ASSET_URL }},"category": "Tweaked Apps","description": "uYou+-Extra is a modified version of uYou (made by @MiRO92) with additional features and mainly made for non jailbroken users!","bundleID": "com.google.ios.youtube","appstore": "com.google.ios.youtube","screenshots": ["https://user-images.githubusercontent.com/52943116/189822859-8a0952db-9264-4b5b-9cbe-d0a87b2db5a0.PNG"],"contact": "https://github.com/arichorn/uYouPlusExtra"}]}'
 
       - run: cat repo.json
         if: env.NEW == 'true'
