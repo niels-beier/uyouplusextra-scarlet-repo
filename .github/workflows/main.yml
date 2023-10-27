@@ -23,7 +23,7 @@ jobs:
 
       - name: Check if version is newer
         id: check_condition
-        run: echo "NEW=$([[ "$(jq -r .Tweaked[0].version repo.json)" != "v18.40.1-3.0.1 + uYouPlusExtra Features" ]] && echo "true" || echo "false")" >> $GITHUB_ENV
+        run: echo "NEW=$([[ "$(jq -r .Tweaked[0].version repo.json)" != env.VERSION ]] && echo "true" || echo "false")" >> $GITHUB_ENV
       
       - name: Create JSON
         uses: jsdaniell/create-json@v1.2.2
