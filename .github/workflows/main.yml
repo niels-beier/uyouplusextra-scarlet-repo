@@ -1,9 +1,8 @@
 name: Update Repository
 
 on:
-  push:
-      paths: 
-        - 'release-versions/*'
+  schedule:
+    - cron: '0 0 * * *'
         
 jobs:
   update-json:
@@ -16,7 +15,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           latest: true
-
+      
       - name: Create JSON
         uses: jsdaniell/create-json@v1.2.2
         with:
