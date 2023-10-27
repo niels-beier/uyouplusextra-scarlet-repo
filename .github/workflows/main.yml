@@ -22,22 +22,21 @@ jobs:
           echo "ASSET_URL=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/arichorn/uYouPlusExtra/releases/latest" | jq -r '.assets[0].browser_download_url')" >> $GITHUB_ENV
 
       - name: Check if version is newer
-        run: |
-          [[ "$(jq -r .Tweaked[0].version repo.json)" != "v18.40.1-3.0.1 + uYouPlusExtra Features" ]] && echo "NEW=true" >> $GITHUB_ENV || echo "NEW=false" >> $GITHUB_ENV
-          echo "Found newer version: $NEW"
+        id: check_condition
+        run: echo ::set-output name=condition::${{ $VERSION != $(jq -r .Tweaks[0].version) }}
       
       - name: Create JSON
         uses: jsdaniell/create-json@v1.2.2
-        if: $NEW
+        if: steps.check_condition.outputs.condition == 'true'
         with:
           name: repo.json
           json: '{"META": {"repoName": "uYouPlus-Extra Repo","repoIcon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png"},"Tweaked": [{"name": "uYou+-Extra","icon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png","version": $VERSION,"down": $ASSET_URL,"category": "Tweaked Apps","description": "uYou+-Extra is a modified version of uYou (made by @MiRO92) with additional features and mainly made for non jailbroken users!","bundleID": "com.google.ios.youtube","appstore": "com.google.ios.youtube","screenshots": ["https://user-images.githubusercontent.com/52943116/189822859-8a0952db-9264-4b5b-9cbe-d0a87b2db5a0.PNG"],"contact": "https://github.com/arichorn/uYouPlusExtra"}]}'
 
       - run: cat repo.json
-        if: $NEW
+        if: steps.check_condition.outputs.condition == 'true'
       
       - name: Commit new file
-        if: $NEW
+        if: steps.check_condition.outputs.condition == 'true'
         run: |
           git config --global user.name "niels-beier"
           git config --global user.email "shuzoyt@arcor.de"
