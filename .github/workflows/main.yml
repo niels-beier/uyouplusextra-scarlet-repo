@@ -18,8 +18,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-        VERSION=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/ORG/REPO/releases/latest" | jq -r '.tag_name')
-        ASSET_URL=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/ORG/REPO/releases/latest" | jq -r '.assets[0].browser_download_url')
+          echo "VERSION=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/arichorn/uYouPlusExtra/releases/latest" | jq -r '.tag_name')" >> $GITHUB_ENV
+          echo "ASSET_URL=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/arichorn/uYouPlusExtra/releases/latest" | jq -r '.assets[0].browser_download_url')" >> $GITHUB_ENV
         
       
       - name: Create JSON
