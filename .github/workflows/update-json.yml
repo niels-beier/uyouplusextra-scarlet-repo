@@ -37,5 +37,5 @@ jobs:
           git config --global user.name "niels-beier"
           git config --global user.email "shuzoyt@arcor.de"
           git add .
-          git commit -am "Auto updating to $(env.VERSION) of uYouPlusExtra"
+          git commit -am "Auto updating to ${{ env.VERSION }} of uYouPlusExtra"
           git push
