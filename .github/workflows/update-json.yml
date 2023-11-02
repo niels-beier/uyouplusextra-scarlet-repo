@@ -3,6 +3,8 @@ name: Update JSON
 on:
   schedule:
     - cron: '0 0 * * *'
+  workflow_dispatch:
+  
         
 jobs:
   update-json:
@@ -20,6 +22,9 @@ jobs:
       - name: Check if version is newer
         id: check_condition
         run: echo "NEW=$([[ "$(jq -r .Tweaked[0].version repo.json)" != env.VERSION ]] && echo "true" || echo "false")" >> $GITHUB_ENV
+
+      - name: Ouput JSON before changing
+        run: cat repo.json
       
       - name: Create JSON
         uses: jsdaniell/create-json@v1.2.2
