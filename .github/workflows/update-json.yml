@@ -3,7 +3,6 @@ name: Update JSON
 on:
   schedule:
     - cron: '0 0 * * *'
-  workflow_dispatch:
   
         
 jobs:
@@ -27,9 +26,6 @@ jobs:
           else
             echo "NEW=false" >> $GITHUB_ENV
           fi
-
-      - name: Ouput JSON before changing
-        run: cat repo.json
       
       - name: Create JSON
         uses: jsdaniell/create-json@v1.2.2
