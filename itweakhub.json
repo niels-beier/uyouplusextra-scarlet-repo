@@ -10,7 +10,7 @@
             "name": "uYou+Extra",
             "developer": "arichorn",
             "version": "v18.44.3-3.0.1-F2",
-            "ipa": "https://github.com/arichorn/uYouPlusExtra/releases/download/v18.44.3-3.0.1-F2/uYouPlusExtra_18.44.3_3.0.1_F2.ipa",
+            "ipa": "https://raw.githubusercontent.com/niels-beier/uYouPlusExtra-ipa/main/uYouPlusExtra_18.44.3_3.0.1_F2.ipa",
             "screenshots": ["https://user-images.githubusercontent.com/52943116/189822859-8a0952db-9264-4b5b-9cbe-d0a87b2db5a0.PNG"],
             "icon": "https://user-images.githubusercontent.com/78001398/271790092-006e81cc-715a-4fbc-aff6-15832e2da8c4.png",
             "compatibility": "iOS 14+",
